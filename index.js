@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 const upload = multer({ dest: "./temp/data/uploads/" });
  
 app.post('/upload', upload.single('file'), async (req, res) => {
-   const { category } = req.body;
+   const { college, course, subject, semester } = req.body;
    const file = req.file;
    if (!file) {
       return res.status(400).send({ message: 'Please upload a file.' });
@@ -63,7 +63,7 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 
    console.log(path);
 
-   var sql = "INSERT INTO `pdf-collection` (`id`, `name`, `url`, `category`) VALUES ("+null+", '"+ file.originalname +"', '"+ path +"', "+ category +");";
+   var sql = "INSERT INTO `pdf-collection` (`id`, `name`, `url`, `college`, `course`, `subject`, `semester`) VALUES ("+null+", '"+ file.originalname +"', '"+ path +"', '"+ college +"', '"+ course +"', '"+ subject +"', "+ semester +");";
    conn.query(sql, function(err, result) {
        if(err) {
          return res.status(400).json({ message: err })
@@ -73,9 +73,10 @@ app.post('/upload', upload.single('file'), async (req, res) => {
 });
 
 app.get('/retrieve', async (req, res) => {
-   const { category } = req.query;
-   console.log(req)
-   var sql = "SELECT * FROM `pdf-collection` WHERE `category` = " + category;
+   const { college, course, subject, semester } = req.query;
+   console.log(college)
+   var sql = "SELECT * FROM `pdf-collection` WHERE `college` = '" + college +"' OR `course` = '" + course +"' OR `subject` = '" + subject + "'" +" OR `semester` = '" + semester + "'";
+   console.log(sql)
    conn.query(sql, function(err, result) {
       if(err) {
         return res.status(400).json({ message: err })
