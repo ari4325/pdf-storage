@@ -20,10 +20,10 @@ var port = process.env.PORT || 4000;
 
 var mysql = require('mysql');
 var conn = mysql.createConnection({
-  host: 'localhost', 
-  user: 'root',     
-  password: '',      
-  database: 'pdf-storage' 
+  host: '68.178.148.238', 
+  user: 'scoreupp_dev',     
+  password: 'rcoa48u%dLZN',      
+  database: 'scoreupp' 
 }); 
 conn.connect(function(err) {
   if (err) throw err;
@@ -31,13 +31,13 @@ conn.connect(function(err) {
 });
 
 const firebaseConfig = {
-   apiKey: "AIzaSyD6eii6uUD34l3HLtrqcrdpdqYbYE2Vi98",
-   authDomain: "pdf-stora.firebaseapp.com",
-   projectId: "pdf-stora",
-   storageBucket: "pdf-stora.appspot.com",
-   messagingSenderId: "694305933691",
-   appId: "1:694305933691:web:0b80888cfb40dee7f4d5de",
-   measurementId: "G-JW1691MMMP"
+   apiKey: "AIzaSyAb8muj9R63oTCUnwbArgz5HEVe5d8AFOI",
+   authDomain: "scoreupp-2a508.firebaseapp.com",
+   projectId: "scoreupp-2a508",
+   storageBucket: "scoreupp-2a508.appspot.com",
+   messagingSenderId: "208021447593",
+   appId: "1:208021447593:web:67b6e295734c3261961ab8",
+   measurementId: "G-0T5WQ1V75N"
  };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
